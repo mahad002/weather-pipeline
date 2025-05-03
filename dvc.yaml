@@ -1,0 +1,21 @@
+stages:
+  fetch_data:
+    cmd: /home/mahad/weather-pipeline/airflow_venv/bin/python scripts/fetch_weather.py
+    deps:
+    - scripts/fetch_weather.py
+    outs:
+    - data/raw/raw_data.csv
+  preprocess_data:
+    cmd: /home/mahad/weather-pipeline/airflow_venv/bin/python scripts/preprocess.py
+    deps:
+    - data/raw/raw_data.csv
+    - scripts/preprocess.py
+    outs:
+    - data/processed/processed_data.csv
+  train_model:
+    cmd: /home/mahad/weather-pipeline/airflow_venv/bin/python scripts/train_model.py
+    deps:
+    - data/processed/processed_data.csv
+    - scripts/train_model.py
+    outs:
+    - model/model.pkl

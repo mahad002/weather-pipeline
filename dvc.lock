@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  fetch_data:
+    cmd: /home/mahad/weather-pipeline/airflow_venv/bin/python scripts/fetch_weather.py
+    deps:
+    - path: scripts/fetch_weather.py
+      hash: md5
+      md5: 08da5b52a62823f8ec92ee4520719f65
+      size: 928
+    outs:
+    - path: data/raw/raw_data.csv
+      hash: md5
+      md5: 077a36415db79151c917319695e18e39
+      size: 107
+  preprocess_data:
+    cmd: /home/mahad/weather-pipeline/airflow_venv/bin/python scripts/preprocess.py
+    deps:
+    - path: data/raw/raw_data.csv
+      hash: md5
+      md5: 077a36415db79151c917319695e18e39
+      size: 107
+    - path: scripts/preprocess.py
+      hash: md5
+      md5: 187aa1545586306ec5f14fe855861068
+      size: 712
+    outs:
+    - path: data/processed/processed_data.csv
+      hash: md5
+      md5: c90e60a50f47693d5ca13a3f77732937
+      size: 105
+  train_model:
+    cmd: /home/mahad/weather-pipeline/airflow_venv/bin/python scripts/train_model.py
+    deps:
+    - path: data/processed/processed_data.csv
+      hash: md5
+      md5: c90e60a50f47693d5ca13a3f77732937
+      size: 105
+    - path: scripts/train_model.py
+      hash: md5
+      md5: c8e0ef15d76b468a3aca74d33b6b74c9
+      size: 367
+    outs:
+    - path: model/model.pkl
+      hash: md5
+      md5: a2dc8928df0e6a74083b05d717780046
+      size: 539
