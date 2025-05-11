@@ -7,6 +7,6 @@ spec:
     app: ml-app
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 8080
+      port: 8082  # Change to 8082 for Jenkins if needed
+      targetPort: 8080  # Change accordingly
   type: LoadBalancer

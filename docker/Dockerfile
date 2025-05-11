@@ -11,5 +11,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the entire project
 COPY . .
 
-# Set the entry point to run Airflow Scheduler and Webserver
+# Expose necessary ports
+EXPOSE 8081  
+EXPOSE 8082 
+
+# Set the entry point to run Airflow Scheduler and Webserver on port 8081
 CMD ["airflow", "webserver", "--port", "8081"]

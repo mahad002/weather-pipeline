@@ -1,19 +1,67 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: weather-pipeline-config
+data:
+  DOCKERHUB_USERNAME: "mahad002"  
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ml-app
+  name: weather-pipeline
+  labels:
+    app: weather-pipeline
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: ml-app
+      app: weather-pipeline
   template:
     metadata:
       labels:
-        app: ml-app
+        app: weather-pipeline
     spec:
       containers:
-        - name: ml-app
-          image: mahad002/ml-app:latest
-          ports:
-            - containerPort: 8080
+      - name: weather-pipeline
+        image: mahad002/weather-pipeline:latest
+        ports:
+        - containerPort: 8081
+        - containerPort: 5000
+        env:
+        - name: AIRFLOW_HOME
+          value: "/app/airflow"
+        - name: MLFLOW_TRACKING_URI
+          value: "http://localhost:5000"
+        volumeMounts:
+        - name: airflow-dags
+          mountPath: /app/airflow/dags
+        - name: airflow-logs
+          mountPath: /app/airflow/logs
+        - name: data-volume
+          mountPath: /app/data
+      volumes:
+      - name: airflow-dags
+        persistentVolumeClaim:
+          claimName: airflow-dags-pvc
+      - name: airflow-logs
+        persistentVolumeClaim:
+          claimName: airflow-logs-pvc
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: data-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: weather-pipeline
+spec:
+  selector:
+    app: weather-pipeline
+  ports:
+  - name: airflow
+    port: 8081
+    targetPort: 8081
+  - name: mlflow
+    port: 5000
+    targetPort: 5000
+  type: ClusterIP
