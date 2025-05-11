@@ -1,0 +1,21 @@
+mlflow:
+  tracking_uri: http://localhost:5000         # URI for the MLflow tracking server
+  registry_uri: http://localhost:5000        # URI for the model registry
+  experiment_name: weather-prediction       # The name of the experiment in MLflow
+  logging_level: INFO                        # Logging level for MLflow server
+
+model:
+  name: weather-model                        # The model's name
+  version: 1.0.0                             # Model version
+  metrics:
+    - mse                                    # Mean Squared Error
+    - mae                                    # Mean Absolute Error
+    - r2_score                               # R-squared score
+  input_features:
+    - humidity                               # Input features for model prediction
+    - wind_speed                             # (Example: Adjust based on your model features)
+  output: temperature                        # The output (target) variable predicted by the model
+
+storage:
+  model_directory: models/                   # Path to store the model in your file system
+  artifacts_directory: artifacts/            # Directory for storing model artifacts

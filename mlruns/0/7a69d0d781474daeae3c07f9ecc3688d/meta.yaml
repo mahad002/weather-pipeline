@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/7a69d0d781474daeae3c07f9ecc3688d/artifacts
+deleted_time: 1746964736344
+end_time: 1746964708003
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 7a69d0d781474daeae3c07f9ecc3688d
+run_name: abrasive-elk-233
+run_uuid: 7a69d0d781474daeae3c07f9ecc3688d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746964706050
+status: 3
+tags: []
+user_id: mahad

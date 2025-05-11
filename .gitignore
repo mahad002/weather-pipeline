@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+airflow_venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# DVC
+.dvc/cache
+.dvc/tmp
+.dvc/state
+.dvc/state-journal
+.dvc/state-lock
+
+# Data
+data/raw/*
+data/processed/*
+!data/raw/sample_*.csv
+!data/processed/sample_*.csv
+
+# Model
+model/*.pkl
+!model/sample_*.pkl
+
+# Logs
+*.log
+logs/
+
+# Local development
+.env
+.env.local

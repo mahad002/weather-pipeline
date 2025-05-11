@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/63cb98096c35459c999600641faa15f3/artifacts
+deleted_time: 1746964736339
+end_time: 1746964668931
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 63cb98096c35459c999600641faa15f3
+run_name: loud-frog-21
+run_uuid: 63cb98096c35459c999600641faa15f3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746964666713
+status: 4
+tags: []
+user_id: mahad

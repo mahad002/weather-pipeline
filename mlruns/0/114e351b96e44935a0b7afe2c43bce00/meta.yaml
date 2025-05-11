@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/114e351b96e44935a0b7afe2c43bce00/artifacts
+end_time: 1746964742081
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 114e351b96e44935a0b7afe2c43bce00
+run_name: valuable-calf-57
+run_uuid: 114e351b96e44935a0b7afe2c43bce00
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746964740021
+status: 3
+tags: []
+user_id: mahad

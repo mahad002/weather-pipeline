@@ -1,64 +1,59 @@
-# Weather Data Engineering Pipeline (Airflow + DVC)
+# Weather Pipeline
 
-This project automates the collection, preprocessing, and modeling of weather data using:
+A data pipeline for weather data collection, processing, and prediction.
 
-- 📡 Live data from **Open-Meteo API**
-- ⚙️ Workflow orchestration with **Apache Airflow**
-- 📦 Dataset + model versioning with **DVC**
-- 🤖 Simple ML model using **Linear Regression**
+## Project Structure
 
----
+\`\`\`
+weather-pipeline/
+├── airflow/               # Airflow DAGs
+├── data/                  # Data directory
+│   ├── raw/              # Raw collected data
+│   └── processed/        # Processed data
+├── model/                # Model directory
+├── scripts/              # Python scripts
+└── ...
+\`\`\`
 
-## 🔁 Pipeline Workflow
+## Setup
 
-### 1. Fetch Data
-- Collects temperature, wind speed, humidity, and weather condition
-- Saves to `data/raw/raw_data.csv`
+1. Create virtual environment:
+   \`\`\`bash
+   python -m venv airflow_venv
+   source airflow_venv/bin/activate  # Linux/Mac
+   # or
+   .\\airflow_venv\\Scripts\\activate  # Windows
+   \`\`\`
 
-### 2. Preprocess
-- Replaces missing values
-- Normalizes data using `MinMaxScaler`
-- Saves to `data/processed/processed_data.csv`
+2. Install dependencies:
+   \`\`\`bash
+   pip install -r requirements.txt
+   \`\`\`
 
-### 3. Train Model
-- Linear regression model to predict **temperature**
-- Saves model to `model/model.pkl`
+3. Initialize DVC:
+   \`\`\`bash
+   dvc init
+   \`\`\`
 
----
+## Usage
 
-## 🚀 Tools Used
+1. Start Airflow:
+   \`\`\`bash
+   airflow standalone
+   \`\`\`
 
-| Tool | Purpose |
-|------|---------|
-| Apache Airflow | Automates fetch → preprocess workflow |
-| DVC | Version control for data + model |
-| Scikit-learn | Machine learning model |
-| Pandas | Data manipulation |
-| Git | Version control for code |
+2. Run the pipeline:
+   \`\`\`bash
+   dvc repro
+   \`\`\`
 
----
+## Development
 
-## 🧪 How to Run
+- Use \`pytest\` for testing
+- Follow PEP 8 style guide
+- Update requirements.txt when adding new dependencies
 
-1. Clone this repo  
-2. Set up virtual environment and install requirements:
+## Deployment
 
-```bash
-python3 -m venv airflow_venv
-source airflow_venv/bin/activate
-pip install -r requirements.txt
-
-## Airflow Integration
-
-The project is also integrated with Apache Airflow. DAG `weather_pipeline` orchestrates:
-
-- `fetch_weather` – fetches live weather data
-- `preprocess_data` – cleans and scales it
-- `train_model` – trains a regression model
-
-Access Airflow at: [http://localhost:8081](http://localhost:8081)
-
-Start with:
-```bash
-airflow scheduler &
-airflow webserver --port 8081 &
+- Docker: \`docker build -t weather-pipeline .\`
+- Kubernetes: \`kubectl apply -f kubernetes/\`
