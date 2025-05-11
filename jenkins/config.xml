@@ -1,0 +1,21 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@1289.vd1c337fd5354">
+  <description>Weather Pipeline CI/CD</description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@3697.vb_470e4543a_d">
+    <scm class="hudson.plugins.git.GitSCMSource" plugin="git@4.14.3">
+      <configVersion>2</configVersion>
+      <remote>https://github.com/mahad002/weather-pipeline.git</remote>
+      <credentialsId>github-credentials</credentialsId>
+      <traits>
+        <hudson.plugins.git.BranchDiscoveryTrait/>
+        <hudson.plugins.git.TagDiscoveryTrait/>
+      </traits>
+    </scm>
+    <scriptPath>Jenkinsfile</scriptPath>
+    <lightweight>true</lightweight>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition> 
